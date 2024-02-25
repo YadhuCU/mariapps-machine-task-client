@@ -2,6 +2,8 @@ import "./App.css";
 import { Auth } from "./pages/Auth";
 import { Dashboard } from "./pages/Dashboard";
 import { Routes, Route } from "react-router-dom";
+import { Settings } from "./pages/Settings";
+import { Profile } from "./pages/Profile";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         <Route path="/" element={<Auth login />} />
         <Route path="/signup" element={<Auth />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { IoMenu } from "react-icons/io5";
-import avatar from "../assets/avatar.png";
+import avatar from "../assets/profilepicure.jpg";
 import settings from "../assets/settings.svg";
 import notifction from "../assets/notification.svg";
 import searchIcon from "../assets/search-icon.svg";
@@ -37,7 +37,10 @@ export function Header() {
           <img src={settings} className="size-7" />
         </div>
         <div className="size-14 rounded-full overflow-hidden">
-          <img src={avatar} className="object-cover w-full cursor-pointer" />
+          <img
+            src={avatar}
+            className="object-cover h-full w-full cursor-pointer"
+          />
         </div>
       </div>
     </div>
