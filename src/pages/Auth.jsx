@@ -74,7 +74,7 @@ export function Auth({ login }) {
     <div className="w-full min-h-screen flex justify-center items-start">
       <form className="card w-full md:w-[500px] min-h-screen md:min-h-max md:mt-32 flex flex-col gap-8 px-4 py-4">
         <div className="">
-          <h1 className="text-3xl font-bold text-primary-700">
+          <h1 className="text-3xl font-bold text-primary-400">
             {login ? "Welcome Back" : "Create Account"}
           </h1>
           <p className="font-bold mr-2 mt-2 text-slate-500">
@@ -146,7 +146,7 @@ export function Auth({ login }) {
         <div className="space-y-2">
           {login ? (
             <button
-              className="w-full px-5 py-3 rounded-xl outline-none bg-primary-700 text-slate-100"
+              className="w-full px-5 py-3 rounded-xl outline-none bg-primary-400 text-slate-100"
               type="button"
               onClick={handleSignIn}
             >
@@ -154,7 +154,7 @@ export function Auth({ login }) {
             </button>
           ) : (
             <button
-              className="w-full px-5 py-3 rounded-xl outline-none bg-primary-700 text-slate-100"
+              className="w-full px-5 py-3 rounded-xl outline-none bg-primary-400 text-slate-100"
               type="button"
               onClick={handleSignUp}
             >

@@ -18,13 +18,13 @@ export function GaugeChart() {
         dataLabels: {
           name: {
             fontSize: "16px",
-            color: undefined,
+            color: "#4f46e5",
             offsetY: 76,
           },
           value: {
             offsetY: 26,
             fontSize: "22px",
-            color: undefined,
+            color: "#818cf8",
             formatter: function (val) {
               return val + "%";
             },
@@ -34,6 +34,7 @@ export function GaugeChart() {
     },
     fill: {
       type: "gradient",
+      colors: "#818cf8",
       gradient: {
         shade: "dark",
         shadeIntensity: 0.15,

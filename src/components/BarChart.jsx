@@ -25,6 +25,10 @@ export function BarChart() {
       },
     },
 
+    fill: {
+      colors: "#818cf8",
+    },
+
     dataLabels: {
       enabled: true,
       formatter: function (val) {

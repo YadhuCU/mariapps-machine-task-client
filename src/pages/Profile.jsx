@@ -3,7 +3,6 @@ import { LeftSidebar } from "../components/LeftSidebar";
 import { Header } from "../components/Header";
 import { FaLocationDot } from "react-icons/fa6";
 import profilePicture from "../assets/profilepicure.jpg";
-import ReactCardSlider from "react-card-slider-component";
 
 Profile.propTypes = {};
 
@@ -17,13 +16,6 @@ export function Profile() {
     "Uno",
     "Anime",
     "Music",
-  ];
-  const slides = [
-    { image: "https://source.unsplash.com/random" },
-    { image: "https://source.unsplash.com/random" },
-    { image: "https://source.unsplash.com/random" },
-    { image: "https://source.unsplash.com/random" },
-    { image: "https://source.unsplash.com/random" },
   ];
   return (
     <div className="w-full min-h-screen grid md:grid-cols-[300px,_auto]">

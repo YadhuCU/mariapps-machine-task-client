@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useUiContext } from "../context/UiContexts";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 
 LeftSidebar.propTypes = {};
 
@@ -12,6 +14,7 @@ export function LeftSidebar() {
     window.matchMedia("(max-width: 768px)").matches,
   );
   const { setBreakPointHelper, toggleHelper, setToggleHelper } = useUiContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setBreakPointHelper(broken);
@@ -33,7 +36,10 @@ export function LeftSidebar() {
           <MenuItem
             icon={<CgProfile />}
             className="text-xl font-semibold text-slate-500"
-            onClick={() => setToggleHelper(false)}
+            onClick={() => {
+              setToggleHelper(false);
+              navigate("/profile");
+            }}
           >
             {" "}
             Profile{" "}
@@ -41,10 +47,24 @@ export function LeftSidebar() {
           <MenuItem
             icon={<IoSettingsSharp />}
             className="text-xl font-semibold text-slate-500"
-            onClick={() => setToggleHelper(false)}
+            onClick={() => {
+              setToggleHelper(false);
+              navigate("/settings");
+            }}
           >
             {" "}
             Settings{" "}
+          </MenuItem>
+          <MenuItem
+            icon={<MdOutlineSpaceDashboard />}
+            className="text-xl font-semibold text-slate-500"
+            onClick={() => {
+              setToggleHelper(false);
+              navigate("/dashboard");
+            }}
+          >
+            {" "}
+            Dashboard{" "}
           </MenuItem>
         </Menu>
       </Sidebar>

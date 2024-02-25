@@ -14,6 +14,9 @@ const options = {
   theme: {
     monochrome: {
       enabled: true,
+      color: "#818cf8",
+      shadeTo: "light",
+      shadeIntensity: 0.65,
     },
   },
   plotOptions: {
