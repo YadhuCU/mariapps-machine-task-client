@@ -4,13 +4,18 @@ import avatar from "../assets/avatar.png";
 import settings from "../assets/settings.svg";
 import notifction from "../assets/notification.svg";
 import searchIcon from "../assets/search-icon.svg";
+import { useUiContext } from "../context/UiContexts";
 
 Header.propTypes = {};
 
 export function Header() {
+  const { setToggleHelper } = useUiContext();
   return (
     <div className="w-full text-slate-800 px-5 py-5 md:px-8 flex items-center justify-between">
-      <div className="text-3xl cursor-pointer md:hidden">
+      <div
+        onClick={() => setToggleHelper(true)}
+        className="text-3xl cursor-pointer md:hidden"
+      >
         <IoMenu />
       </div>
       <div>
@@ -20,7 +25,7 @@ export function Header() {
         <div className="py-2 px-4 hidden lg:flex gap-2 items-center cursor-pointer rounded-full bg-slate-100">
           <img src={searchIcon} className="size-5" />
           <input
-            className="bg-slate-100 w-full"
+            className="bg-slate-100 outline-none w-full"
             type="text"
             placeholder="Search something"
           />

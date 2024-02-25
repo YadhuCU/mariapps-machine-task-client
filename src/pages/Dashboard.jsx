@@ -7,9 +7,9 @@ Dashboard.propTypes = {};
 export function Dashboard() {
   return (
     <div className="w-full min-h-screen grid md:grid-cols-[300px,_auto]">
-      <div className="bg-slate-500 hidden md:block">
-        <LeftSidebar />
-      </div>
+      <LeftSidebar />
+      {/* <div className="hidden md:block"> */}
+      {/* </div> */}
       <div className="">
         <Header />
       </div>
