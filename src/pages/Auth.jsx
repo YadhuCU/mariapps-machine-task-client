@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { SERVER_URL } from "../services/serverURL";
 
 Auth.propTypes = {
   login: PropTypes.bool,
@@ -23,6 +24,7 @@ export function Auth({ login }) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const passwordInputRef = useRef(null);
   const confirmmPasswordInputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const handleValidation = (e, item) => {
     const { value } = e.target;
@@ -61,8 +63,34 @@ export function Auth({ login }) {
     }
   };
 
-  const handleSignIn = () => {
-    console.log("handle sign in");
+  const handleSignIn = async () => {
+    const { email, password } = user;
+    if (!email || !password) return alert("Please fill the form completely");
+    try {
+      setLoading(true);
+      const result = await fetch(`${SERVER_URL}/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await result.json();
+      if (result.status === 200) {
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", JSON.stringify(data.user));
+        sessionStorage.setItem("admin", data.admin);
+        navigate("/dashboard");
+      } else {
+        alert(data);
+      }
+
+      console.log("data", data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSignUp = () => {
@@ -71,7 +99,11 @@ export function Auth({ login }) {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-start">
+    <div
+      className={`${
+        loading && "cursor-progress"
+      } w-full min-h-screen flex justify-center items-start`}
+    >
       <form className="card w-full md:w-[500px] min-h-screen md:min-h-max md:mt-32 flex flex-col gap-8 px-4 py-4">
         <div className="">
           <h1 className="text-3xl font-bold text-primary-400">

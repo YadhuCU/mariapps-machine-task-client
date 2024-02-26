@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
 
-BarChart.propTypes = {};
+BarChart.propTypes = {
+  barSeries: PropTypes.array,
+  barOptions: PropTypes.array,
+};
 
-export function BarChart() {
+export function BarChart({ barOptions, barSeries }) {
   const series = [
     {
-      name: "Inflation",
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      name: "Humidity",
+      data: barSeries,
     },
   ];
 
@@ -42,20 +45,7 @@ export function BarChart() {
     },
 
     xaxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: barOptions,
       position: "top",
       axisBorder: {
         show: false,
@@ -95,7 +85,7 @@ export function BarChart() {
     },
 
     title: {
-      text: "Monthly Inflation in Argentina, 2002",
+      text: "Weekly Forecast Humidity",
       floating: true,
       offsetY: 330,
       align: "center",
@@ -106,7 +96,7 @@ export function BarChart() {
   };
 
   return (
-    <div className="p-5 rounded-xl bg-slate-100">
+    <div className="p-5 rounded-xl bg-slate-50 shadow-xl hover:shadow-lg transition-all">
       <Chart options={options} series={series} type="bar" height="350" />
     </div>
   );

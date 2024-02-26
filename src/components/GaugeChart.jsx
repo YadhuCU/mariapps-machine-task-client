@@ -1,10 +1,25 @@
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
+import { useState, useEffect } from "react";
 
-GaugeChart.propTypes = {};
+GaugeChart.propTypes = {
+  humidity: PropTypes.number,
+  cloudiness: PropTypes.number,
+};
 
-export function GaugeChart() {
-  const series = [67];
+export function GaugeChart({ humidity, cloudiness }) {
+  const [label, setLabel] = useState("");
+
+  useEffect(() => {
+    if (humidity) {
+      setLabel("Humidity");
+    } else if (cloudiness) {
+      setLabel("Cloudiness");
+    }
+  }, [humidity, cloudiness]);
+
+  const series = [humidity || cloudiness];
+
   const options = {
     chart: {
       height: 220,
@@ -47,11 +62,11 @@ export function GaugeChart() {
     // stroke: {
     //   dashArray: 4,
     // },
-    labels: ["Humidity"],
+    labels: [label],
   };
 
   return (
-    <div className="p-5 rounded-xl bg-slate-100">
+    <div className="p-5 rounded-xl bg-slate-50 shadow-xl hover:shadow-lg transition-all">
       <Chart options={options} series={series} type="radialBar" height={220} />
     </div>
   );

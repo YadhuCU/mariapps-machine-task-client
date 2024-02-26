@@ -3,10 +3,58 @@ import { LeftSidebar } from "../components/LeftSidebar";
 import { Header } from "../components/Header";
 import { FaLocationDot } from "react-icons/fa6";
 import profilePicture from "../assets/profilepicure.jpg";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img4 from "../assets/img4.jpg";
+import dp1 from "../assets/dp1.jpg";
+import dp2 from "../assets/dp2.jpg";
+import dp3 from "../assets/dp3.jpg";
+import dp4 from "../assets/dp4.jpg";
+import dp5 from "../assets/dp5.jpg";
+import dp6 from "../assets/dp6.jpg";
 
 Profile.propTypes = {};
 
+const images = [img1, img2, img3, img4];
+const chats = [
+  {
+    image: dp1,
+    name: "John Carter",
+    message: "hey wsp",
+  },
+  {
+    image: dp2,
+    name: "Luca Mathew",
+    message: "Gd mrng",
+  },
+  {
+    image: dp3,
+    name: "James",
+    message: "hows going..",
+  },
+  {
+    image: dp4,
+    name: "Mathew Abraham",
+    message: "lorem ipsum",
+  },
+  {
+    image: dp5,
+    name: "Jack Wilder",
+    message: "check the mail",
+  },
+  {
+    image: dp6,
+    name: "Kevin Paul",
+    message: "hey wsp",
+  },
+];
+const onlineUsers = [dp1, dp2, dp3, dp4, dp5, dp6, img1, img2, img3, img4];
+
 export function Profile() {
+  const navigate = useNavigate();
   const badges = [
     "Fashion",
     "Travalling",
@@ -17,6 +65,13 @@ export function Profile() {
     "Anime",
     "Music",
   ];
+
+  useEffect(() => {
+    if (!sessionStorage.token) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <div className="w-full min-h-screen grid md:grid-cols-[300px,_auto]">
       <LeftSidebar />
@@ -31,10 +86,10 @@ export function Profile() {
                 src={profilePicture}
               />
               <div className="p-5">
-                <h1 className="text-3xl font-semibold">User Name, 22</h1>
+                <h1 className="text-3xl font-semibold">John Carter, 22</h1>
                 <div className="flex items-center gap-2 text-slate-500">
                   <FaLocationDot />
-                  <p className="">Place</p>
+                  <p className="">Paris</p>
                 </div>
                 <p className="mt-4">
                   Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
@@ -56,22 +111,14 @@ export function Profile() {
             <div className="rounded-xl space-y-2 p-4 bg-slate-50">
               <p className="text-slate-600 text-lg px-4">Photos</p>
               <div className="flex gap-2 flex-wrap">
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="size-52 mx-auto rounded-xl"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="size-52 mx-auto rounded-xl"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="size-52 mx-auto rounded-xl"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="size-52 mx-auto rounded-xl"
-                />
+                {images.length > 0 &&
+                  images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      className="size-52 mx-auto rounded-xl"
+                    />
+                  ))}
               </div>
             </div>
             {/* about section */}
@@ -135,117 +182,36 @@ export function Profile() {
               </div>
               <div className="flex flex-col gap-4">
                 {/* // chat users */}
-                <div className="flex gap-2 text-slate-600">
-                  <img
-                    src="https://source.unsplash.com/random"
-                    className="size-16 rounded-full"
-                  />
-                  <div className="flex-grow flex items-center">
-                    <div className="px-4">
-                      <p className="text-slate-800 text-lg">Username</p>
-                      <p>messages....</p>
+                {chats.length > 0 &&
+                  chats.map((item, index) => (
+                    <div key={index} className="flex gap-2 text-slate-600">
+                      <img
+                        src={item?.image}
+                        className="size-16 object-cover rounded-full"
+                      />
+                      <div className="flex-grow flex items-center">
+                        <div className="px-4">
+                          <p className="text-slate-800 text-lg">{item?.name}</p>
+                          <p>{item?.message}</p>
+                        </div>
+                        <p className="text-sm ml-auto text-slate-400">6:00am</p>
+                      </div>
                     </div>
-                    <p className="text-sm ml-auto text-slate-400">6:00am</p>
-                  </div>
-                </div>
-                <div className="flex gap-2 text-slate-600">
-                  <img
-                    src="https://source.unsplash.com/random"
-                    className="size-16 rounded-full"
-                  />
-                  <div className="flex-grow flex items-center">
-                    <div className="px-4">
-                      <p className="text-slate-800 text-lg">Username</p>
-                      <p>messages....</p>
-                    </div>
-                    <p className="text-sm ml-auto text-slate-400">6:00am</p>
-                  </div>
-                </div>
-                <div className="flex gap-2 text-slate-600">
-                  <img
-                    src="https://source.unsplash.com/random"
-                    className="size-16 rounded-full"
-                  />
-                  <div className="flex-grow flex items-center">
-                    <div className="px-4">
-                      <p className="text-slate-800 text-lg">Username</p>
-                      <p>messages....</p>
-                    </div>
-                    <p className="text-sm ml-auto text-slate-400">6:00am</p>
-                  </div>
-                </div>
-                <div className="flex gap-2 text-slate-600">
-                  <img
-                    src="https://source.unsplash.com/random"
-                    className="size-16 rounded-full"
-                  />
-                  <div className="flex-grow flex items-center">
-                    <div className="px-4">
-                      <p className="text-slate-800 text-lg">Username</p>
-                      <p>messages....</p>
-                    </div>
-                    <p className="text-sm ml-auto text-slate-400">6:00am</p>
-                  </div>
-                </div>
-                <div className="flex gap-2 text-slate-600">
-                  <img
-                    src="https://source.unsplash.com/random"
-                    className="size-16 rounded-full"
-                  />
-                  <div className="flex-grow flex items-center">
-                    <div className="px-4">
-                      <p className="text-slate-800 text-lg">Username</p>
-                      <p>messages....</p>
-                    </div>
-                    <p className="text-sm ml-auto text-slate-400">6:00am</p>
-                  </div>
-                </div>
+                  ))}
               </div>
             </div>
             {/* My contact online section */}
             <div className="rounded-xl space-y-4 p-4 bg-slate-50 ">
-              <p className="text-slate-600 text-lg px-4">Messages</p>
+              <p className="text-slate-600 text-lg px-4">Online Users</p>
               <div className="flex flex-wrap gap-4">
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
-                <img
-                  src="https://source.unsplash.com/random"
-                  className="rounded-full size-16 mx-auto"
-                />
+                {onlineUsers.length > 0 &&
+                  onlineUsers.map((item, index) => (
+                    <img
+                      key={index}
+                      src={item}
+                      className="rounded-full object-cover size-16 mx-auto"
+                    />
+                  ))}
               </div>
             </div>
           </div>

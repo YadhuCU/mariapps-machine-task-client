@@ -4,6 +4,8 @@ import { Dashboard } from "./pages/Dashboard";
 import { Routes, Route } from "react-router-dom";
 import { Settings } from "./pages/Settings";
 import { Profile } from "./pages/Profile";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
