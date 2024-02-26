@@ -11,8 +11,8 @@ Auth.propTypes = {
 export function Auth({ login }) {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: "admin@email.com",
+    password: "password",
     confirmPassword: "",
   });
   const [userError, setUserError] = useState({
@@ -64,6 +64,7 @@ export function Auth({ login }) {
   };
 
   const handleSignIn = async () => {
+    navigate("/dashboard");
     const { email, password } = user;
     if (!email || !password) return alert("Please fill the form completely");
     try {
@@ -93,9 +94,31 @@ export function Auth({ login }) {
     }
   };
 
-  const handleSignUp = () => {
-    console.log("handle sign up");
+  const handleSignUp = async () => {
     navigate("/dashboard");
+    const { email, password } = user;
+    if (!email || !password) return alert("Please fill the form completely");
+    try {
+      setLoading(true);
+      const result = await fetch(`${SERVER_URL}/signup`, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await result.json();
+      console.log("data", data);
+      if (result.status === 201) {
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", JSON.stringify(data.user));
+        sessionStorage.setItem("admin", data.admin);
+        navigate("/dashboard");
+      } else {
+        alert(data);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
